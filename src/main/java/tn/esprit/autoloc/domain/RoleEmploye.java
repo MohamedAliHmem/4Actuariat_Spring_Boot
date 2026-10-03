@@ -1,4 +1,4 @@
-package org.example.entities;
+package tn.esprit.autoloc.domain;
 
 public enum RoleEmploye {
     AGENT,

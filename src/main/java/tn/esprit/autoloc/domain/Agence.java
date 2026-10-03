@@ -1,12 +1,9 @@
-package org.example.entities;
+package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -15,8 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -26,19 +21,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Paiement {
+public class Agence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idPaiement;
+    private Long idAgence;
 
-    private BigDecimal montant;
-    private LocalDate datePaiement;
+    @ToString.Include
+    private String nom;
+    private String ville;
+    private String adresse;
+    private String telephone;
 
-    @Enumerated(EnumType.STRING)
-    private ModePaiement modePaiement;
-
-    @ManyToOne
-    @ToString.Exclude
-    private Contrat contrat;
 }

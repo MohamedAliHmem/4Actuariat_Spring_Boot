@@ -1,10 +1,11 @@
-package org.example.entities;
+package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -23,19 +24,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Maintenance {
+public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idMaintenance;
+    private Long idReservation;
 
     private LocalDate dateDebut;
     private LocalDate dateFin;
 
-    @ToString.Include
-    private String description;
+    @Enumerated(EnumType.STRING)
+    private StatutReservation statut;
 
-    @ManyToOne
-    @ToString.Exclude
-    private Vehicule vehicule;
 }

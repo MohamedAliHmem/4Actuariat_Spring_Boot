@@ -1,10 +1,11 @@
-package org.example.entities;
+package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -12,9 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -24,25 +22,17 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Agence {
+public class Employe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idAgence;
+    private Long idEmploye;
 
     @ToString.Include
     private String nom;
-    private String ville;
-    private String adresse;
-    private String telephone;
+    private String prenom;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "agence")
-    @ToString.Exclude
-    private List<Employe> employes = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private RoleEmploye role;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "agence")
-    @ToString.Exclude
-    private List<Vehicule> vehicules = new ArrayList<>();
 }

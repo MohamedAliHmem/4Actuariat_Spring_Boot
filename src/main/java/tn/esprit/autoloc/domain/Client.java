@@ -1,10 +1,9 @@
-package org.example.entities;
+package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,8 +12,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,17 +23,18 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Equipement {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idEquipement;
+    private Long idClient;
 
     @ToString.Include
-    private String libelle;
+    private String nom;
+    private String prenom;
+    private String email;
+    private String telephone;
+    private String numPermis;
+    private LocalDate dateInscription;
 
-    @Builder.Default
-    @ManyToMany(mappedBy = "equipements")
-    @ToString.Exclude
-    private Set<Vehicule> vehicules = new HashSet<>();
 }
